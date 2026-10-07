@@ -1,6 +1,13 @@
 import pandas as pd
 
 
+def calculate_profitability(revenue: float, cost: float) -> float:
+    """Возвращает рентабельность в процентах."""
+    if revenue == 0:
+        return 0.0
+    return (revenue - cost) / revenue * 100
+
+
 def main():
     data = {
         "Месяц": ["Январь", "Февраль", "Март"],
@@ -9,6 +16,11 @@ def main():
     df = pd.DataFrame(data)
     print(df)
     print("Средняя выручка:", df["Выручка"].mean())
+
+
+    cost = 90000
+    profitability = calculate_profitability(df["Выручка"].mean(), cost)
+    print(f"Рентабельность: {profitability:.2f}%")
 
 
 if __name__ == "__main__":
